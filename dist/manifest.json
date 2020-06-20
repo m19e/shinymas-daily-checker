@@ -8,5 +8,9 @@
             "matches": ["https://*/*"],
             "js": ["index.js"]
         }
-    ]
+    ],
+    "background": {
+        "scripts": ["event.js"],
+        "persistent": false
+    }
 }
