@@ -1,5 +1,6 @@
 const main = () => {
-    window.alert("Open!");
+    // window.alert("Open!");
+    console.log("open");
 };
 
 main();
