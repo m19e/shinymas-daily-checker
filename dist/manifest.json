@@ -9,7 +9,7 @@
             "js": ["index.js"]
         }
     ],
-    "permissions": ["alarms"],
+    "permissions": ["alarms", "storage"],
     "background": {
         "scripts": ["event.js"],
         "persistent": false
