@@ -1,6 +1,6 @@
 {
     "name": "daily-checker",
-    "description": "Open mission page when update daily mission",
+    "description": "This is chrome extension to Open shinycolors mission page everyday after update daily mission.",
     "version": "0.1",
     "manifest_version": 2,
     "content_scripts": [
