@@ -1,5 +1,5 @@
 {
-    "name": "daily-checker",
+    "name": "デイリーでジュエル300個",
     "description": "This is chrome extension to Open shinycolors mission page everyday after update daily mission.",
     "version": "0.1",
     "manifest_version": 2,
