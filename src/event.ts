@@ -36,19 +36,22 @@ chrome.alarms.onAlarm.addListener((alarm) => {
             console.log("check daily mission");
         }
         chrome.alarms.clearAll();
-        chrome.alarms.create("RUN_CHECK", { periodInMinutes: 60 });
+        chrome.alarms.create("RUN_CHECK", {
+            delayInMinutes: 1,
+            periodInMinutes: 60,
+        });
         console.log("goto run_check");
     }
 
     if (alarm.name == "RUN_CHECK") {
         if (now.getHours() == updateHour) {
             setStorageUpdated(false);
-            console.log("its time:", now.getMinutes());
+            console.log("its time");
             chrome.alarms.clearAll();
             chrome.alarms.create("UPDATED_CHECK", { periodInMinutes: 1 });
             console.log("goto updated_check");
         } else {
-            console.log("not today");
+            console.log("not today", now.toLocaleString());
         }
     }
 });
