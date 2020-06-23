@@ -13,6 +13,8 @@ const setStorageUpdated = (updated: boolean) => {
     });
 };
 
+const;
+
 const init = () => {
     console.log("init process");
     chrome.alarms.clearAll();
@@ -46,21 +48,5 @@ chrome.alarms.onAlarm.addListener((alarm) => {
             });
         });
         console.log("goto run_check");
-    }
-
-    if (alarm.name == "RUN_CHECK") {
-        console.log("run process:", now.toLocaleString());
-
-        if (now.getHours() == updateHour) {
-            setStorageUpdated(false);
-            console.log("its time");
-            chrome.alarms.clearAll(() => {
-                chrome.alarms.create("UPDATED_CHECK", {});
-            });
-            console.log("goto updated_check");
-        } else {
-            setStorageUpdated(true);
-            console.log("not today:", now.toLocaleString());
-        }
     }
 });
