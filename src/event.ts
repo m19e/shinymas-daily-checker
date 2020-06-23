@@ -13,6 +13,12 @@ const setStorageUpdated = (updated: boolean) => {
     });
 };
 
+const update = () => {
+    window.open("https://shinycolors.enza.fun/mission", "_blank");
+    setStorageUpdated(true);
+    console.log("check daily mission");
+};
+
 const init = () => {
     console.log("init process");
     chrome.storage.local.clear();
