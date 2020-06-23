@@ -14,6 +14,7 @@ const setStorageUpdated = (updated: boolean) => {
 };
 
 const init = () => {
+    console.log("init process");
     chrome.alarms.clearAll();
     chrome.storage.local.clear();
     setStorageUpdated(false);
@@ -22,36 +23,44 @@ const init = () => {
 
 init();
 
-const updateHour: number = 5;
-const updated: boolean = getStorage("UPDATED");
-
 chrome.alarms.onAlarm.addListener((alarm) => {
+    const updateHour: number = 15;
+    const updated: boolean = getStorage("UPDATED");
+
     // const now = new Date("2006 7 29 5:38 +0900");
     const now = new Date();
+    console.log("alarm fired:", now.toLocaleString());
 
     if (alarm.name == "UPDATED_CHECK") {
+        console.log("updated process:", now.toLocaleString());
+
         if (!updated) {
             window.open("https://shinycolors.enza.fun/mission", "_blank");
             setStorageUpdated(true);
             console.log("check daily mission");
         }
-        chrome.alarms.clearAll();
-        chrome.alarms.create("RUN_CHECK", {
-            delayInMinutes: 1,
-            periodInMinutes: 60,
+        chrome.alarms.clearAll(() => {
+            chrome.alarms.create("RUN_CHECK", {
+                delayInMinutes: 1,
+                periodInMinutes: 15,
+            });
         });
         console.log("goto run_check");
     }
 
     if (alarm.name == "RUN_CHECK") {
+        console.log("run process:", now.toLocaleString());
+
         if (now.getHours() == updateHour) {
             setStorageUpdated(false);
             console.log("its time");
-            chrome.alarms.clearAll();
-            chrome.alarms.create("UPDATED_CHECK", { periodInMinutes: 1 });
+            chrome.alarms.clearAll(() => {
+                chrome.alarms.create("UPDATED_CHECK", {});
+            });
             console.log("goto updated_check");
         } else {
-            console.log("not today", now.toLocaleString());
+            setStorageUpdated(true);
+            console.log("not today:", now.toLocaleString());
         }
     }
 });
