@@ -31,27 +31,15 @@ const init = () => {
 init();
 
 chrome.alarms.onAlarm.addListener((alarm) => {
-    const updateHour: number = 15;
+    const updateHour: number = 5;
     const updated: boolean = getStorage("UPDATED");
 
     // const now = new Date("2006 7 29 5:38 +0900");
     const now = new Date();
-    console.log("alarm fired:", now.toLocaleString());
 
     if (alarm.name == "UPDATED_CHECK") {
-        console.log("updated process:", now.toLocaleString());
-
-        if (!updated) {
-            window.open("https://shinycolors.enza.fun/mission", "_blank");
-            setStorageUpdated(true);
-            console.log("check daily mission");
+        if (now.getHours() >= 5) {
+        } else {
         }
-        chrome.alarms.clearAll(() => {
-            chrome.alarms.create("RUN_CHECK", {
-                delayInMinutes: 1,
-                periodInMinutes: 15,
-            });
-        });
-        console.log("goto run_check");
     }
 });
