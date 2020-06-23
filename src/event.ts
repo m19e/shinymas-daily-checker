@@ -13,8 +13,6 @@ const setStorageUpdated = (updated: boolean) => {
     });
 };
 
-const;
-
 const init = () => {
     console.log("init process");
     chrome.alarms.clearAll();

@@ -11,7 +11,6 @@ var setStorageUpdated = function (updated) {
         console.log("Set UPDATED:" + updated);
     });
 };
-var ;
 var init = function () {
     console.log("init process");
     chrome.alarms.clearAll();
