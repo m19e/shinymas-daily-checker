@@ -15,10 +15,11 @@ const setStorageUpdated = (updated: boolean) => {
 
 const init = () => {
     console.log("init process");
-    chrome.alarms.clearAll();
     chrome.storage.local.clear();
     setStorageUpdated(false);
-    chrome.alarms.create("UPDATED_CHECK", { delayInMinutes: 1 });
+    chrome.alarms.clearAll(() => {
+        chrome.alarms.create("UPDATED_CHECK", { delayInMinutes: 1 });
+    });
 };
 
 init();

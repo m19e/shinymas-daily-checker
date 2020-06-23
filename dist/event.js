@@ -13,10 +13,11 @@ var setStorageUpdated = function (updated) {
 };
 var init = function () {
     console.log("init process");
-    chrome.alarms.clearAll();
     chrome.storage.local.clear();
     setStorageUpdated(false);
-    chrome.alarms.create("UPDATED_CHECK", { delayInMinutes: 1 });
+    chrome.alarms.clearAll(function () {
+        chrome.alarms.create("UPDATED_CHECK", { delayInMinutes: 1 });
+    });
 };
 init();
 chrome.alarms.onAlarm.addListener(function (alarm) {
