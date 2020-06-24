@@ -19,6 +19,19 @@ const update = () => {
     console.log("check daily mission");
 };
 
+const setTimeHMS = (
+    date: Date,
+    h: number = 5,
+    m: number = 0,
+    s: number = 0
+): Date => {
+    const result: Date = date;
+    result.setHours(h);
+    result.setMinutes(m);
+    result.setSeconds(s);
+    return result;
+};
+
 const init = () => {
     console.log("init process");
     chrome.storage.local.clear();

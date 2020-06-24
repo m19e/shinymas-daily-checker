@@ -16,6 +16,16 @@ var update = function () {
     setStorageUpdated(true);
     console.log("check daily mission");
 };
+var setTimeHMS = function (date, h, m, s) {
+    if (h === void 0) { h = 5; }
+    if (m === void 0) { m = 0; }
+    if (s === void 0) { s = 0; }
+    var result = date;
+    result.setHours(h);
+    result.setMinutes(m);
+    result.setSeconds(s);
+    return result;
+};
 var init = function () {
     console.log("init process");
     chrome.storage.local.clear();
