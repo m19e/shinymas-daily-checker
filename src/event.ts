@@ -15,7 +15,6 @@ const setStorageUpdated = (updated: boolean) => {
 
 const update = () => {
     window.open("https://shinycolors.enza.fun/mission", "_blank");
-    setStorageUpdated(true);
     console.log("check daily mission");
 };
 
@@ -35,7 +34,6 @@ const setTimeHMS = (
 const init = () => {
     console.log("init process");
     chrome.storage.local.clear();
-    setStorageUpdated(false);
     chrome.alarms.clearAll(() => {
         chrome.alarms.create("RING", { delayInMinutes: 1 });
     });
@@ -45,7 +43,6 @@ init();
 
 chrome.alarms.onAlarm.addListener((alarm) => {
     const updateHour: number = 5;
-    const updated: boolean = getStorage("UPDATED");
 
     // const now = new Date("2006 7 29 5:38 +0900");
     const now = new Date();

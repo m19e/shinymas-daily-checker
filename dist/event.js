@@ -13,7 +13,6 @@ var setStorageUpdated = function (updated) {
 };
 var update = function () {
     window.open("https://shinycolors.enza.fun/mission", "_blank");
-    setStorageUpdated(true);
     console.log("check daily mission");
 };
 var setTimeHMS = function (date, h, m, s) {
@@ -30,7 +29,6 @@ var setTimeHMS = function (date, h, m, s) {
 var init = function () {
     console.log("init process");
     chrome.storage.local.clear();
-    setStorageUpdated(false);
     chrome.alarms.clearAll(function () {
         chrome.alarms.create("RING", { delayInMinutes: 1 });
     });
@@ -38,7 +36,6 @@ var init = function () {
 init();
 chrome.alarms.onAlarm.addListener(function (alarm) {
     var updateHour = 5;
-    var updated = getStorage("UPDATED");
     // const now = new Date("2006 7 29 5:38 +0900");
     var now = new Date();
     if (alarm.name == "SET") {
