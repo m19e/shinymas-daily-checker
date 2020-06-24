@@ -17,6 +17,7 @@ var update = function () {
     console.log("check daily mission");
 };
 var setTimeHMS = function (date, h, m, s) {
+    if (date === void 0) { date = new Date(); }
     if (h === void 0) { h = 5; }
     if (m === void 0) { m = 0; }
     if (s === void 0) { s = 0; }
@@ -41,7 +42,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
     // const now = new Date("2006 7 29 5:38 +0900");
     var now = new Date();
     if (alarm.name == "SET") {
-        var ring_1 = setTimeHMS(now);
+        var ring_1 = setTimeHMS();
         if (now.getHours() >= updateHour) {
             console.log("before dateline:", now.toLocaleString());
             ring_1.setDate(now.getDate() + 1);

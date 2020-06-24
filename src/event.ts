@@ -20,7 +20,7 @@ const update = () => {
 };
 
 const setTimeHMS = (
-    date: Date,
+    date: Date = new Date(),
     h: number = 5,
     m: number = 0,
     s: number = 0
@@ -51,7 +51,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     const now = new Date();
 
     if (alarm.name == "SET") {
-        const ring = setTimeHMS(now);
+        const ring = setTimeHMS();
         if (now.getHours() >= updateHour) {
             console.log("before dateline:", now.toLocaleString());
             ring.setDate(now.getDate() + 1);
