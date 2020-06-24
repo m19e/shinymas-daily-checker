@@ -37,7 +37,7 @@ const init = () => {
     chrome.storage.local.clear();
     setStorageUpdated(false);
     chrome.alarms.clearAll(() => {
-        chrome.alarms.create("UPDATED_CHECK", { delayInMinutes: 1 });
+        chrome.alarms.create("RING", { delayInMinutes: 1 });
     });
 };
 
@@ -50,9 +50,23 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     // const now = new Date("2006 7 29 5:38 +0900");
     const now = new Date();
 
-    if (alarm.name == "UPDATED_CHECK") {
-        if (now.getHours() >= 5) {
-        } else {
+    if (alarm.name == "SET") {
+        const ring = setTimeHMS(now);
+        if (now.getHours() >= updateHour) {
+            console.log("before dateline:", now.toLocaleString());
+            ring.setDate(now.getDate() + 1);
         }
+        console.log("alarm will ring:", ring.toLocaleString());
+        chrome.alarms.clearAll(() => {
+            chrome.alarms.create("RING", { when: ring.getTime() });
+        });
+    }
+
+    if (alarm.name == "RING") {
+        console.log("ring:", now.toLocaleString());
+        update();
+        chrome.alarms.clearAll(() => {
+            chrome.alarms.create("SET", { periodInMinutes: 1 });
+        });
     }
 });
