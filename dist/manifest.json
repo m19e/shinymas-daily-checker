@@ -3,12 +3,6 @@
     "description": "Open shinycolors mission page everyday after update daily mission.",
     "version": "0.1",
     "manifest_version": 2,
-    "content_scripts": [
-        {
-            "matches": ["https://*/*"],
-            "js": ["index.js"]
-        }
-    ],
     "permissions": ["alarms", "storage"],
     "background": {
         "scripts": ["event.js"],
